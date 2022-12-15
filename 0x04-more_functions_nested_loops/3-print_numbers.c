@@ -1,8 +1,7 @@
 #include "main.h"
 
 /**
- * print_numbers - print 0123456789
- * owned by doctor
+ * print_numbers - print 0-9
  * Return: void
  */
 
