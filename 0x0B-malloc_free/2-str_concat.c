@@ -12,40 +12,34 @@
 
 char *str_concat(char *s1, char *s2)
 {
-	unsigned int len1, len2, sizw, i, j;
-	char *nstr;
+	unsigned int i = 0, j, size = 0;
+	char *str;
 
-	if (s1 == NULL)
-		s1 =  "";
-	if (s2 == NULL)
-		s2 = "";
-
-	len1 = 0;
-	while (s1[len1] != '\0')
-		len1++;
-	len2 = 0;
-	while (s2[len2] != '\0')
-		len2++;
-
-	size = len1 + len2;
-
-	nstr = malloc((sizeof(char) * size) + 1);
-	/*check if malloc was successful */
-	if (nstr == NULL)
+	if (s1 != NULL)
+		for (i = 0; s1[i] != '\0'; i++)
+			size++;
+	if (s2 != NULL)
+		for (i = 0; s2[i] != '\0'; i++)
+			size++;
+	str = malloc(sizeof(char) * (size + 1));
+	if (str == NULL)
 		return (NULL);
-
-	i = 0;
-	while (i < len1)
+	if (s1 == NULL && s2 == NULL)
 	{
-		nstr[i] = s1[i];
-		i++;
+		str[0] = '\0';
+		return (str);
 	}
-	j = 0;
-	while (i <= size)
-	{
-		nstr[i] = s2[j];
-		i++;
-		j++;
-	}
-	return (nstr);
+	if (s1 != NULL)
+		for (i = 0; s1[i] != '\0'; i++)
+			str[i] = s1[i];
+	if (s1 == NULL)
+		i = 0;
+	if (s2 != NULL)
+		for (j = 0; s2[j] != '\0'; j++)
+		{
+			str[i] = s2[j];
+			i++;
+		}
+	str[size] = '\0';
+	return (str);
 }
